@@ -1,0 +1,34 @@
+Flask es un framework web ligero de Python. Se utiliza para desarrollar aplicaciones web de forma rápida y sencilla.
+
+Python es un lenguaje de programación interpretado. Fue creado por Guido van Rossum y lanzado por primera vez en 1991.
+
+El sistema RAG (Retrieval-Augmented Generation) combina la recuperación de información con la generación de texto. Primero busca información relevante de una base de conocimiento y luego utiliza esa información para generar respuestas.
+
+FAISS (Facebook AI Similarity Search) es una biblioteca desarrollada por Facebook AI Research para búsqueda eficiente de similitud y agrupación de vectores densos.
+
+Los embeddings son representaciones vectoriales de palabras o frases. Permiten capturar el significado semántico del texto en un espacio vectorial.
+
+Flask utiliza el motor de plantillas Jinja2 para renderizar páginas HTML. Jinja2 permite la inserción de contenido dinámico en plantillas HTML.
+
+Para instalar Flask, se utiliza el comando: pip install flask
+
+Una aplicación Flask básica se define así:
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+Los endpoints en Flask se definen mediante decoradores como @app.route('/ruta').
+
+Para manejar formularios en Flask, se utilizan los métodos HTTP GET y POST. Los datos del formulario se acceden mediante request.form.
+
+Las variables de ruta en Flask se definen con <variable>. Por ejemplo: @app.route('/usuario/<nombre>')
+
+Flask proporciona la función render_template para renderizar plantillas HTML: render_template('index.html', variable=valor)
+
+SQLAlchemy es una biblioteca de Python que proporciona un ORM para interactuar con bases de datos SQL en aplicaciones Flask.
