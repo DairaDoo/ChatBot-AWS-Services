@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot RAG</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>Chatbot RAG</h1>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Hola, soy un chatbot con sistema RAG (Retrieval-Augmented Generation). Puedo responder preguntas basadas en mi base de conocimiento. ¿En qué puedo ayudarte?
+                </div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí..." autocomplete="off">
+            <button id="send-btn">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatBox = document.getElementById('chat-box');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+
+            // Función para agregar mensajes al chat
+            function addMessage(message, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.innerText = message;
+                
+                messageDiv.appendChild(contentDiv);
+                chatBox.appendChild(messageDiv);
+                
+                // Hacer scroll hasta el último mensaje
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // Función para enviar mensaje al servidor
+            async function sendMessage() {
+                const message = userInput.value.trim();
+                if (!message) return;
+
+                // Agregar mensaje del usuario al chat
+                addMessage(message, true);
+                userInput.value = '';
+                
+                // Mostrar indicador de carga
+                const loadingDiv = document.createElement('div');
+                loadingDiv.className = 'message bot-message loading';
+                loadingDiv.innerHTML = '<div class="message-content">Pensando...</div>';
+                chatBox.appendChild(loadingDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                try {
+                    // Enviar solicitud al servidor
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message }),
+                    });
+
+                    const data = await response.json();
+                    
+                    // Eliminar indicador de carga
+                    chatBox.removeChild(loadingDiv);
+                    
+                    // Agregar respuesta del bot
+                    addMessage(data.response, false);
+                } catch (error) {
+                    // Eliminar indicador de carga
+                    chatBox.removeChild(loadingDiv);
+                    
+                    // Mostrar error
+                    addMessage('Error al conectar con el servidor. Por favor, intenta nuevamente.', false);
+                    console.error('Error:', error);
+                }
+            }
+
+            // Event listeners
+            sendBtn.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

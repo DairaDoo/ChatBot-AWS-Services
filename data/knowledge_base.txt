@@ -1,34 +1,86 @@
-Flask es un framework web ligero de Python. Se utiliza para desarrollar aplicaciones web de forma rápida y sencilla.
-
-Python es un lenguaje de programación interpretado. Fue creado por Guido van Rossum y lanzado por primera vez en 1991.
-
-El sistema RAG (Retrieval-Augmented Generation) combina la recuperación de información con la generación de texto. Primero busca información relevante de una base de conocimiento y luego utiliza esa información para generar respuestas.
-
-FAISS (Facebook AI Similarity Search) es una biblioteca desarrollada por Facebook AI Research para búsqueda eficiente de similitud y agrupación de vectores densos.
-
-Los embeddings son representaciones vectoriales de palabras o frases. Permiten capturar el significado semántico del texto en un espacio vectorial.
-
-Flask utiliza el motor de plantillas Jinja2 para renderizar páginas HTML. Jinja2 permite la inserción de contenido dinámico en plantillas HTML.
-
-Para instalar Flask, se utiliza el comando: pip install flask
-
-Una aplicación Flask básica se define así:
-from flask import Flask
-app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-Los endpoints en Flask se definen mediante decoradores como @app.route('/ruta').
-
-Para manejar formularios en Flask, se utilizan los métodos HTTP GET y POST. Los datos del formulario se acceden mediante request.form.
-
-Las variables de ruta en Flask se definen con <variable>. Por ejemplo: @app.route('/usuario/<nombre>')
-
-Flask proporciona la función render_template para renderizar plantillas HTML: render_template('index.html', variable=valor)
-
-SQLAlchemy es una biblioteca de Python que proporciona un ORM para interactuar con bases de datos SQL en aplicaciones Flask.
+Amazon EC2 (Elastic Compute Cloud): Servicio que proporciona capacidad de computación escalable en la nube.
+AWS Lambda: Permite ejecutar código sin aprovisionar ni administrar servidores.
+Amazon ECS (Elastic Container Service): Servicio para ejecutar y escalar contenedores Docker.
+Amazon EKS (Elastic Kubernetes Service): Servicio administrado para ejecutar Kubernetes en AWS.
+AWS Fargate: Motor de cómputo sin servidor para contenedores.
+AWS Outposts: Extiende AWS a centros de datos locales para una experiencia híbrida.
+Amazon Lightsail: Servicio simplificado para proyectos pequeños de computación y almacenamiento.
+Amazon S3 (Simple Storage Service): Almacenamiento de objetos escalable y duradero para datos.
+Amazon EBS (Elastic Block Store): Proporciona volúmenes de almacenamiento en bloque para EC2.
+Amazon EFS (Elastic File System): Sistema de archivos elástico y compartido para instancias EC2.
+AWS Storage Gateway: Conecta entornos on-premise con almacenamiento en la nube.
+Amazon FSx: Servicios de sistemas de archivos totalmente administrados para Windows y Lustre.
+Amazon RDS (Relational Database Service): Servicio para gestionar bases de datos relacionales en la nube.
+Amazon DynamoDB: Base de datos NoSQL rápida y completamente administrada.
+Amazon Aurora: Base de datos relacional compatible con MySQL y PostgreSQL.
+Amazon Redshift: Servicio de almacenamiento de datos para análisis a gran escala.
+Amazon ElastiCache: Servicio de almacenamiento en caché para mejorar el rendimiento de aplicaciones.
+Amazon DocumentDB: Base de datos de documentos compatible con MongoDB.
+Amazon Neptune: Base de datos de grafos para aplicaciones que trabajan con relaciones complejas.
+Amazon QLDB: Libro mayor transparente, inmutable y criptográficamente verificable.
+Amazon VPC (Virtual Private Cloud): Permite aprovisionar una red virtual aislada en AWS.
+Amazon CloudFront: Red de entrega de contenido (CDN) global y segura.
+AWS Direct Connect: Establece conexión privada entre la red y AWS.
+Elastic Load Balancing: Distribuye automáticamente tráfico de entrada en múltiples destinos.
+Amazon Route 53: Servicio de DNS escalable y de alta disponibilidad.
+AWS Global Accelerator: Mejora la disponibilidad y rendimiento de aplicaciones globales.
+AWS App Mesh: Malla de servicios para aplicaciones basadas en microservicios.
+AWS IAM (Identity and Access Management): Gestiona el acceso a recursos de AWS de forma segura.
+AWS KMS (Key Management Service): Gestión de claves de cifrado y control de acceso.
+AWS Shield: Protección contra ataques DDoS para aplicaciones.
+AWS WAF (Web Application Firewall): Protege aplicaciones web contra amenazas comunes.
+AWS Secrets Manager: Almacena y gestiona secretos y credenciales.
+AWS Organizations: Gestiona múltiples cuentas de AWS desde una sola organización.
+Amazon Macie: Servicio de seguridad que usa ML para descubrir y proteger datos sensibles.
+AWS Certificate Manager: Provisión y gestión de certificados SSL/TLS.
+AWS CodeCommit: Repositorio de código fuente privado basado en Git.
+AWS CodeBuild: Compilación y prueba de código fuente automáticamente.
+AWS CodeDeploy: Automatiza la implementación de código en servidores o contenedores.
+AWS CodePipeline: Entrega continua que automatiza el flujo de trabajo de despliegue.
+AWS Cloud9: Entorno de desarrollo integrado (IDE) basado en la nube.
+AWS X-Ray: Analiza y depura aplicaciones distribuidas.
+AWS CloudShell: Shell basado en navegador para administrar recursos de AWS.
+AWS CloudWatch: Supervisión y observabilidad para recursos y aplicaciones.
+AWS CloudTrail: Registro de auditoría de las llamadas a la API de AWS.
+AWS Config: Servicio que evalúa, audita y evalúa configuraciones de recursos.
+AWS OpsWorks: Gestión de configuración mediante Chef y Puppet.
+AWS Systems Manager: Visibilidad y control de la infraestructura AWS.
+AWS Trusted Advisor: Recomendaciones para seguir buenas prácticas de AWS.
+AWS Control Tower: Configuración y gobernanza de un entorno AWS seguro de múltiples cuentas.
+AWS License Manager: Ayuda a gestionar licencias de software en AWS.
+Amazon SageMaker: Servicio para construir, entrenar y desplegar modelos de ML.
+Amazon Comprehend: Procesamiento de lenguaje natural basado en ML.
+Amazon Rekognition: Análisis de imágenes y videos con visión computacional.
+Amazon Polly: Convierte texto en voz realista.
+Amazon Lex: Crea interfaces de conversación con voz y texto.
+Amazon Translate: Traducción automática de texto entre idiomas.
+Amazon Textract: Extrae texto y datos de documentos escaneados.
+Amazon Forecast: Pronósticos de series temporales usando ML.
+Amazon Personalize: Crea recomendaciones personalizadas en tiempo real.
+Amazon Bedrock: Construye y escala aplicaciones de IA generativa con modelos fundacionales.
+Amazon Athena: Consulta datos en S3 usando SQL sin servidor.
+Amazon EMR: Procesamiento de big data usando frameworks como Hadoop y Spark.
+AWS Glue: Servicio ETL para preparar y transformar datos.
+Amazon Kinesis: Procesamiento de datos en tiempo real.
+Amazon QuickSight: Servicio de BI para visualización de datos.
+AWS Data Pipeline: Movimiento y transformación de datos entre servicios.
+AWS Lake Formation: Crea un data lake seguro y escalable en AWS.
+AWS Migration Hub: Rastrea migraciones de aplicaciones a AWS.
+AWS Snowball: Dispositivo de transferencia de datos a gran escala.
+AWS Snowmobile: Camión para migrar exabytes de datos a AWS.
+AWS DataSync: Transfiere datos automáticamente entre almacenamiento local y AWS.
+AWS Application Discovery Service: Recopila información sobre entornos on-premise para planear migraciones.
+AWS IoT Core: Conecta dispositivos IoT a la nube de forma segura.
+AWS IoT Greengrass: Ejecuta funciones de AWS Lambda en dispositivos IoT locales.
+AWS IoT Analytics: Analiza datos de IoT a gran escala.
+AWS IoT Events: Detecta eventos y responde a cambios en dispositivos IoT.
+AWS IoT Device Defender: Audita y monitorea configuraciones de seguridad en dispositivos IoT.
+Amazon Sumerian: Crea aplicaciones de realidad aumentada y virtual sin experiencia en programación.
+Amazon Connect: Centro de contacto basado en la nube fácil de usar.
+Amazon Pinpoint: Envío dirigido de mensajes para marketing y notificaciones.
+Amazon Simple Email Service (SES): Servicio de envío de correos electrónicos a escala.
+Amazon WorkSpaces: Escritorios virtuales administrados en la nube.
+Amazon Chime: Servicio de comunicaciones unificadas para reuniones y mensajería.
+Amazon WorkDocs: Almacenamiento y colaboración de documentos seguros.
+Amazon Honeycode: Crea aplicaciones web y móviles sin escribir código.
+AWS Ground Station: Servicio para controlar satélites y procesar datos en AWS.
